@@ -1,0 +1,62 @@
+<div class="text-center row col-md-12">
+
+ <h1>Address Book</h1>
+
+ <div class="main-controls margin-top-sm">
+  <input type="text" placeholder="search" ng-model="query">
+  <a href="" class="btn btn-primary" ng-click="showNewContactForm()">Add new contact</a>
+  <a href="" class="btn btn-primary" ng-click="editingMode = !editingMode">Edit Contacts</a>
+ </div>
+
+ <div class="margin-top" ng-show="showAddNew">
+  <p>Required = *</p>
+   <form novalidate class="form">
+    <div class="form-group">
+      First Name*: <input type="text" placeholder="" class="form-control" ng-model="newContact.first_name">
+      Surname*: <input type="text" placeholder="" class="form-control" ng-model="newContact.surname">
+      Address: <input type="text" placeholder="" class="form-control" ng-model="newContact.address">
+      Phone Number: <input type="text" placeholder="" class="form-control" ng-model="newContact.phone_number">
+      Email: <input type="email" placeholder="" class="form-control" ng-model="newContact.email">
+    </div>
+     <button class="btn btn-primary" ng-click="clear()">Clear</button>
+     <button class="btn btn-primary" ng-click="saveNewContact(newContact)">Save</button>
+   </form>
+ </div>
+
+ <div class="contacts margin-top">
+  <div class="row">
+    <ul class="list-style-none">
+
+     <li ng-repeat="contact in contacts | filter:query" class="col-md-4 col-xs-12">
+      <div class="contact" >
+
+        <h2 class="contact-name">{{contact.first_name}} {{contact.surname}}</h2>
+
+        <div class="info">
+         <p ng-show="contact.address"><strong>Address:</strong> {{contact.address}}</p>
+         <p ng-show="contact.phone_number"><strong>Phone:</strong> {{contact.phone_number}}</p>
+         <p ng-show="contact.email"><strong>Email:</strong> {{contact.email}}</p>
+        </div>
+
+        <button class="btn btn-primary" ng-click="deleteContact(contact)" ng-show="editingMode">Delete</button>
+        <button class="btn btn-primary" ng-click="editContact(contact)" ng-show="editingMode">Edit</button>
+      
+        <form novalidate class="form margin-top-sm" ng-show="contact.edit">
+          <div class="form-group">
+            First Name*: <input type="text" placeholder="" class="form-control" ng-model="contact.first_name">
+            Surname*: <input type="text" placeholder="" class="form-control" ng-model="contact.surname">
+            Address: <input type="text" placeholder="" class="form-control" ng-model="contact.address">
+            Phone Number: <input type="text" placeholder="" class="form-control" ng-model="contact.phone_number">
+            Email: <input type="email" placeholder="" class="form-control" ng-model="contact.email">
+          </div>
+          <button class="btn btn-primary" ng-click="updateContact(contact)">Close</button>
+          <button class="btn btn-primary" ng-click="updateContact(contact)">Update</button>
+
+        </form>
+      </div><!--./contact-->
+  
+     </li>
+    </ul>
+   </div><!--./row-->
+ </div><!--./contacts-->
+</div><!--./row col-->
