@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('addressBookApp')
-  .controller('MainCtrl', function ($scope, $filter, Contact) {
+  .controller('MainCtrl', ["$scope", "$filter", "Contact", 
+  	function ($scope, $filter, Contact) {
 
 	/*Get all contacts*/
 	Contact.query().$promise.then(function(result) {
-		console.log(result);
 		$scope.contacts = result;
 		sortList();
 	});
@@ -30,8 +30,6 @@ angular.module('addressBookApp')
   		var date = new Date().toISOString();
   		newContact.createdAt = date;
   		newContact.updatedAt = date;
-  		console.log("saving new contact");
-  		console.log(newContact);
 
   		$scope.contacts.push(newContact);
 
@@ -57,8 +55,8 @@ angular.module('addressBookApp')
   		//send delete to backend
   		Contact.delete({id: contact.id});
 
+  		//ie<9 problems 
   		$scope.contacts.splice($scope.contacts.indexOf(contact), 1);
-
   	};	
 
 
@@ -75,6 +73,9 @@ angular.module('addressBookApp')
 
   	$scope.updateContact = function(contact) {
 
+  		var date = new Date().toISOString();
+  		contact.updatedAt = date;
+
   		//send update to server
 		Contact.update({id: contact.id}, contact);
 
@@ -84,4 +85,4 @@ angular.module('addressBookApp')
   	}
 
 
-  });
+  }]);
