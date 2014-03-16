@@ -95,13 +95,24 @@ a:hover {
 
 
 .btn-primary {
-  background-color: #1abc9c !important;
+  background-color: #1abc9c;
   border: none;
   min-width: 100px;
 }
 
 .btn-primary:hover {
-  background-color: #16a085 !important;
+  background-color: #16a085;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #e74c3c;
+  border: none;
+  min-width: 100px;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
 }
 
 

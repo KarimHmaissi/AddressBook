@@ -38,8 +38,8 @@
          <p ng-show="contact.email"><strong>Email:</strong> {{contact.email}}</p>
         </div>
 
-        <button class="btn btn-primary" ng-click="deleteContact(contact)" ng-show="editingMode">Delete</button>
         <button class="btn btn-primary" ng-click="editContact(contact)" ng-show="editingMode">Edit</button>
+        <button class="btn btn-delete" ng-click="deleteContact(contact)" ng-show="editingMode">Delete</button>
       
         <form novalidate class="form margin-top-sm" ng-show="contact.edit">
           <div class="form-group">
